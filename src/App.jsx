@@ -1,10 +1,15 @@
-
-import Header from "./components/Header"
+import CurrentWeather from './components/CurrentWeather';
+import Header from './components/Header';
+import TodaysForecast from './components/TodaysForecast';
 
 const App = () => {
   return (
-    <Header />
-  )
-}
+    <>
+      <Header />
+      <CurrentWeather />
+      <TodaysForecast />
+    </>
+  );
+};
 
-export default App
+export default App;
