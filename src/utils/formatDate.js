@@ -58,4 +58,27 @@ const formatDate = (enteredDate) => {
   return formattedDate; // Output: "24th Jun, Monday"
 };
 
-export default formatDate;
+const convertTo24Hour = (time12h) => {
+  // Extract the time parts
+  const [time, period] = time12h.split(' ');
+
+  // Extract hours and minutes
+  const [hours, minutes] = time.split(':');
+
+  // Convert to 24-hour format
+  let hours24 = parseInt(hours);
+  if (period === 'PM' && hours24 < 12) {
+    hours24 += 12;
+  } else if (period === 'AM' && hours24 === 12) {
+    hours24 = 0;
+  }
+
+  // Format hours and minutes to have leading zeros if necessary
+  const hours24Str = hours24.toString().padStart(2, '0');
+  const minutesStr = minutes.padStart(2, '0');
+
+  // Return the 24-hour formatted time
+  return `${hours24Str}:${minutesStr}`;
+};
+
+export { formatDate, convertTo24Hour };
