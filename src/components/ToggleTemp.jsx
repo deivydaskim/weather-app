@@ -1,14 +1,16 @@
 import { Switch } from '@headlessui/react';
-import { useState } from 'react';
+import { useContext } from 'react';
+import { TempModeContext } from '../context/TempModeContext.jsx';
+
 
 const ToggleTemp = () => {
-  const [isCelsius, setIsCelsius] = useState(true);
+  const { isCelsius, changeTempMode } = useContext(TempModeContext)
 
   return (
     <div className="relative">
       <Switch
         checked={isCelsius}
-        onChange={setIsCelsius}
+        onChange={changeTempMode}
         className="group inline-flex h-8 w-16 items-center rounded-full bg-indigo-50 transition shadow-md"
       >
         <span className="size-7 translate-x-0.5 rounded-full bg-indigo-400 transition group-data-[checked]:translate-x-[33px]" />
