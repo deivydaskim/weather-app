@@ -9,10 +9,10 @@ const SearchBar = () => {
         placeholder="Search for cities"
         type="text"
         onSelect={() => setIsFocus(!isFocus)}
-        className="w-full h-10 leading-10 bg-indigo-50 focus:outline-indigo-400 rounded-lg px-4"
+        className="body w-full h-10 leading-10 bg-indigo-50 focus:outline-indigo-400 rounded-lg px-4"
       />
       {isFocus && (
-        <div className="absolute bg-indigo-50 w-full mt-2 rounded-lg px-4 py-2 shadow-md">
+        <div className="body absolute bg-indigo-50 w-full mt-2 rounded-lg px-4 py-2 shadow-md">
           <ul>
             <li>Text</li>
           </ul>

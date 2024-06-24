@@ -22,24 +22,46 @@
 }
 
 @layer utilities {
-  /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
 
   .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
   }
 }
 
-body {
-  background-color: white;
-  padding: 0 2rem;
-  font-family: 'NunitoRegular';
+.headline-xl {
+  @apply font-['NunitoBold'] text-[63px] tracking-[0.25px]
+}
+
+.headline-l {
+  @apply font-['NunitoSemiBold'] text-[35px] tracking-[0.25px]
+}
+
+.headline-m {
+  @apply font-['NunitoMedium'] text-[26px] tracking-[0.25px]
+}
+
+.headline-s {
+  @apply font-['NunitoSemiBold'] text-[21px] tracking-[0.15px]
+}
+
+.body {
+  @apply font-['NunitoRegular'] text-[16px] tracking-[0.15px]
+}
+
+.body-2 {
+  @apply font-['NunitoSemiBold'] text-[16px] tracking-[0.15px]
+}
+
+.body-3 {
+  @apply font-['NunitoBold'] text-[16px] tracking-[0.25px]
 }
 
 #root {
-  max-width: 1024px;
+  max-width: 1240px;
+  padding: 0 2rem;
   margin: 0 auto;
 }

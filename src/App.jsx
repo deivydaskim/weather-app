@@ -1,6 +1,7 @@
 import CurrentWeather from './components/CurrentWeather';
 import Header from './components/Header';
 import TodaysForecast from './components/TodaysForecast';
+import WeatherDetails from './components/WeatherDetails';
 
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
       <Header />
       <CurrentWeather />
       <TodaysForecast />
+      <WeatherDetails />
     </>
   );
 };
