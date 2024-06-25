@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+
 import DetailsCard from './DetailsCard';
 import { TempModeContext } from '../context/TempModeContext';
 import { convertTo24Hour } from '../utils/formatDate';
@@ -6,16 +7,14 @@ import { convertTo24Hour } from '../utils/formatDate';
 const WeatherDetails = ({ weather, loading, error }) => {
   const { isCelsius } = useContext(TempModeContext);
 
-  if (loading) {
+  if (loading || error) {
     return (
       <div className="h-80 bg-[#EAEAEA] p-5 my-6 rounded-xl">
         <div className="h-7 w-40 bg-[#D8D8D8]"></div>
       </div>
     );
   }
-  if (error) {
-    return <h1>Error: {error}</h1>;
-  }
+
   if (weather) {
     const weatherAstro = weather.forecast.forecastday[0];
     const sunrise = isCelsius
@@ -54,7 +53,7 @@ const WeatherDetails = ({ weather, loading, error }) => {
           />
           <DetailsCard
             title="Chance of rain"
-            value={weatherAstro.day.daily_chance_of_rain + '%'}
+            value={weather.forecast.forecastday[0].day.daily_chance_of_rain + '%'}
             icon="/icons/drop-icon.svg"
           />
           <DetailsCard

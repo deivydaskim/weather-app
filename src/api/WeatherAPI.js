@@ -17,4 +17,20 @@ const getWeatherData = async (city) => {
   }
 };
 
-export { getWeatherData };
+const searchLocation = async (text) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/search.json?key=${API_KEY}&q=${text}`
+    );
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error while fetching:', error);
+    throw error;
+  }
+};
+
+export { getWeatherData, searchLocation };

@@ -22,7 +22,6 @@ const App = () => {
       try {
         const weatherData = await getWeatherData(location);
         setWeather(weatherData);
-        console.log(weatherData);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -33,9 +32,13 @@ const App = () => {
     fetchWeather();
   }, [location]);
 
+  const handleChangeLocation = (city) => {
+    setLocation(city);
+  }
+
   return (
     <TempModeProvider>
-      <Header />
+      <Header changeLocation={handleChangeLocation} />
       <CurrentWeather weather={weather} loading={loading} error={error} />
       <TodaysForecast weather={weather} loading={loading} error={error} />
       <WeatherDetails weather={weather} loading={loading} error={error} />
