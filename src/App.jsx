@@ -10,7 +10,6 @@ import { getWeatherData } from './api/WeatherAPI.js';
 
 const App = () => {
   const [location, setLocation] = useState('Vilnius');
-
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
