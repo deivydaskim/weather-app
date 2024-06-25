@@ -7,7 +7,11 @@ const WeatherDetails = ({ weather, loading, error }) => {
   const { isCelsius } = useContext(TempModeContext);
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return (
+      <div className="h-80 bg-[#EAEAEA] p-5 my-6 rounded-xl">
+        <div className="h-7 w-40 bg-[#D8D8D8]"></div>
+      </div>
+    );
   }
   if (error) {
     return <h1>Error: {error}</h1>;

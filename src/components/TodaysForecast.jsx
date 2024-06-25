@@ -7,8 +7,14 @@ const TodaysForecast = ({ weather, loading, error }) => {
   const { isCelsius } = useContext(TempModeContext);
 
   if (loading) {
-    return <h1>Loading</h1>;
+    return (
+      <div className="bg-[#EAEAEA] rounded-xl p-5 mt-12">
+        <div className="w-40 h-6 bg-[#D8D8D8]"></div>
+        <div className="h-32"></div>
+      </div>
+    );
   }
+
   if (error) {
     return <h1>Error: {error}</h1>;
   }
@@ -25,20 +31,23 @@ const TodaysForecast = ({ weather, loading, error }) => {
         className="flex gap-3 h-32 w-full overflow-x-scroll"
         style={{ scrollbarWidth: 'thin' }}
       >
-        {forecast.map((hr) => {
-          const time = hr.time.split(' ')[1];
-          const temperature = isCelsius
-            ? Math.round(hr.temp_c)
-            : Math.round(hr.temp_f);
-          return (
-            <TodayCard
-              key={hr.time_epoch}
-              time={time}
-              icon={hr.condition.icon}
-              temperature={temperature}
-            />
-          );
-        })}
+        {forecast
+          .slice(6)
+          .concat(forecast.slice(0, 6))
+          .map((hr) => {
+            const time = hr.time.split(' ')[1];
+            const temperature = isCelsius
+              ? Math.round(hr.temp_c)
+              : Math.round(hr.temp_f);
+            return (
+              <TodayCard
+                key={hr.time_epoch}
+                time={time}
+                icon={hr.condition.icon}
+                temperature={temperature}
+              />
+            );
+          })}
       </ul>
     </section>
   );
