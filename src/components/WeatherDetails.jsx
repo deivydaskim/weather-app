@@ -3,16 +3,13 @@ import { useContext } from 'react';
 import DetailsCard from './DetailsCard';
 import { TempModeContext } from '../context/TempModeContext';
 import { convertTo24Hour } from '../utils/formatDate';
+import { WeatherDetailsSkeleton } from './Skeletons';
 
 const WeatherDetails = ({ weather, loading, error }) => {
   const { isCelsius } = useContext(TempModeContext);
 
   if (loading || error) {
-    return (
-      <div className="h-80 bg-[#EAEAEA] p-5 my-6 rounded-xl">
-        <div className="h-7 w-40 bg-[#D8D8D8]"></div>
-      </div>
-    );
+    return <WeatherDetailsSkeleton />;
   }
 
   if (weather) {
@@ -23,6 +20,7 @@ const WeatherDetails = ({ weather, loading, error }) => {
     const sunset = isCelsius
       ? convertTo24Hour(weatherAstro.astro.sunset)
       : weatherAstro.astro.sunset;
+    const chanceOfRain = weatherAstro.day.daily_chance_of_rain + '%';
     const pressure = isCelsius
       ? weather.current.pressure_mb + ' mb'
       : weather.current.pressure_in + ' in';
@@ -35,12 +33,14 @@ const WeatherDetails = ({ weather, loading, error }) => {
     const visibility = isCelsius
       ? weather.current.vis_km + ' km'
       : weather.current.vis_miles + ' mi';
+    const uvIndex = weather.current.uv + ' of 10';
+
     return (
       <section className="flex flex-col bg-indigo-50 rounded-xl p-5 my-6 justify-between">
         <h3 className="uppercase w-full body-2 text-gray-900/60">
           Weather Details
         </h3>
-        <ul className="grid gap-5 sm:grid-cols-2 sm:grid-rows-4 md:grid-cols-4 md:grid-rows-2 w-full">
+        <ul className="grid gap-5 sm:grid-cols-2 sm:grid-rows-4 lg:grid-cols-4 lg:grid-rows-2 w-full">
           <DetailsCard
             title="Sunrise"
             value={sunrise}
@@ -53,7 +53,7 @@ const WeatherDetails = ({ weather, loading, error }) => {
           />
           <DetailsCard
             title="Chance of rain"
-            value={weather.forecast.forecastday[0].day.daily_chance_of_rain + '%'}
+            value={chanceOfRain}
             icon="/icons/drop-icon.svg"
           />
           <DetailsCard
@@ -64,7 +64,7 @@ const WeatherDetails = ({ weather, loading, error }) => {
           <DetailsCard title="Wind" value={wind} icon="/icons/wind-icon.svg" />
           <DetailsCard
             title="UV index"
-            value={weather.current.uv + ' of 10'}
+            value={uvIndex}
             icon="/icons/sun-icon.svg"
           />
           <DetailsCard

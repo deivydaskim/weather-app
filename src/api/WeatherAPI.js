@@ -1,10 +1,10 @@
 const API_KEY = '53ab8546f5c841118bf164621242106';
 const BASE_URL = 'http://api.weatherapi.com/v1';
 
-const getWeatherData = async (city) => {
+const getWeatherData = async (address, querie) => {
   try {
     const response = await fetch(
-      `${BASE_URL}/forecast.json?key=${API_KEY}&q=${city}`
+      `${BASE_URL}/${address}.json?key=${API_KEY}&q=${querie}`
     );
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -17,20 +17,4 @@ const getWeatherData = async (city) => {
   }
 };
 
-const searchLocation = async (text) => {
-  try {
-    const response = await fetch(
-      `${BASE_URL}/search.json?key=${API_KEY}&q=${text}`
-    );
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error while fetching:', error);
-    throw error;
-  }
-};
-
-export { getWeatherData, searchLocation };
+export default getWeatherData;

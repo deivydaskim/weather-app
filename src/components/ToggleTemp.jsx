@@ -2,12 +2,11 @@ import { Switch } from '@headlessui/react';
 import { useContext } from 'react';
 import { TempModeContext } from '../context/TempModeContext.jsx';
 
-
 const ToggleTemp = () => {
   const { isCelsius, changeTempMode } = useContext(TempModeContext)
 
   return (
-    <div className="relative">
+    <>
       <Switch
         checked={isCelsius}
         onChange={changeTempMode}
@@ -17,7 +16,7 @@ const ToggleTemp = () => {
         <span className={`absolute z-10 left-[7px] body-2 ${!isCelsius ? 'text-white' : 'text-black'}`}>°F</span>
         <span className={`absolute z-10 right-[11px] body-2 ${isCelsius ? 'text-white' : 'text-black'}`}>°C</span>
       </Switch>
-    </div>
+    </>
   );
 };
 

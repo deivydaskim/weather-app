@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDebounce, useLocalStorage } from '@uidotdev/usehooks';
 
-import { searchLocation } from '../api/WeatherAPI';
+import getWeatherData from '../api/WeatherAPI';
 import GeolocationBtn from './Geolocation';
 
 const SearchBar = ({ changeLocation }) => {
@@ -14,7 +14,6 @@ const SearchBar = ({ changeLocation }) => {
     []
   );
   const [isFocus, setIsFocus] = useState(false);
-
   const inputField = useRef(null);
 
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
@@ -24,7 +23,7 @@ const SearchBar = ({ changeLocation }) => {
       if (debouncedSearchTerm.length > 2) {
         setLoading(true);
         try {
-          const search = await searchLocation(debouncedSearchTerm);
+          const search = await getWeatherData('search', debouncedSearchTerm);
           setSuggestions(search);
         } catch (error) {
           setError(error);
@@ -53,7 +52,7 @@ const SearchBar = ({ changeLocation }) => {
 
       if (!isCityInRecentSearches) {
         if (updatedSearches.length >= 3) {
-          updatedSearches = updatedSearches.slice(0, 2);
+          updatedSearches = updatedSearches.slice(0, 2); // Remove last search, max 3 items alowed in list;
         }
         updatedSearches = [{ city, region }, ...updatedSearches];
       }
@@ -81,7 +80,7 @@ const SearchBar = ({ changeLocation }) => {
   };
 
   return (
-    <div className="w-full relative">
+    <>
       <GeolocationBtn changeLocation={changeLocation} />
       <input
         ref={inputField}
@@ -173,7 +172,7 @@ const SearchBar = ({ changeLocation }) => {
           </ul>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

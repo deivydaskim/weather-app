@@ -1,30 +1,33 @@
 import { useContext } from 'react';
 import { formatDate } from '../utils/formatDate';
 import { TempModeContext } from '../context/TempModeContext';
+import { CurrentWeatherSkeleton } from './Skeletons';
 
 const CurrentWeather = ({ weather, loading, error }) => {
   const { isCelsius } = useContext(TempModeContext);
 
   if (loading) {
-    return (
-      <section className="flex h-40">
-        <div className="flex flex-col justify-between">
-          <div className="w-32 h-6 bg-[#D8D8D8]"></div>
-          <div className="w-28 h-9 bg-[#D8D8D8]"></div>
-          <div className="w-72 h-14 bg-[#D8D8D8]"></div>
-        </div>
-      </section>
-    );
+    return <CurrentWeatherSkeleton />;
   }
 
   if (error) {
     return (
       <div className="flex h-40 justify-around items-center">
-        <h1 className="headline-l text-gray-900/80">Something went wrong...</h1>
+        <div>
+          <h1 className="headline-l text-gray-900/80">
+            Something went wrong...
+          </h1>
+          <button
+            onClick={() => location.reload()}
+            className="p-2 rounded-md bg-indigo-400 text-white"
+          >
+            Reload page
+          </button>
+        </div>
         <img
           className="h-full"
           src="/icons/cloud-error-illustration.svg"
-          alt=""
+          alt="Error image"
         />
       </div>
     );
