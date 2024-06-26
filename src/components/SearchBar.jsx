@@ -1,14 +1,18 @@
 import { useState, useEffect, useRef } from 'react';
-import { useDebounce } from '@uidotdev/usehooks';
+import { useDebounce, useLocalStorage } from '@uidotdev/usehooks';
 
 import { searchLocation } from '../api/WeatherAPI';
+import GeolocationBtn from './Geolocation';
 
 const SearchBar = ({ changeLocation }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [recentSearches, setRecentSearches] = useState([]);
+  const [recentSearches, setRecentSearches] = useLocalStorage(
+    'recentSearches',
+    []
+  );
   const [isFocus, setIsFocus] = useState(false);
 
   const inputField = useRef(null);
@@ -22,7 +26,6 @@ const SearchBar = ({ changeLocation }) => {
         try {
           const search = await searchLocation(debouncedSearchTerm);
           setSuggestions(search);
-          console.log(search);
         } catch (error) {
           setError(error);
         } finally {
@@ -42,12 +45,20 @@ const SearchBar = ({ changeLocation }) => {
 
   const handleSelectLocation = (city, region) => {
     const isCityInRecentSearches = recentSearches.some(
-      (item) => item.city === city
+      (search) => search.city === city
     );
 
-    if (!isCityInRecentSearches) {
-      setRecentSearches((prev) => [{ city, region }, ...prev]);
-    }
+    setRecentSearches((prev) => {
+      let updatedSearches = prev;
+
+      if (!isCityInRecentSearches) {
+        if (updatedSearches.length >= 3) {
+          updatedSearches = updatedSearches.slice(0, 2);
+        }
+        updatedSearches = [{ city, region }, ...updatedSearches];
+      }
+      return updatedSearches;
+    });
 
     changeLocation(city);
     setSearchTerm('');
@@ -71,6 +82,7 @@ const SearchBar = ({ changeLocation }) => {
 
   return (
     <div className="w-full relative">
+      <GeolocationBtn changeLocation={changeLocation} />
       <input
         ref={inputField}
         value={searchTerm}
