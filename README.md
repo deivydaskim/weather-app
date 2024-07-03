@@ -1,8 +1,12 @@
 # Weather App
+**Link to live project - https://weather-neon-xi.vercel.app/**
 
+![Weather App Preview](https://raw.githubusercontent.com/deivydaskim/weather-app/main/project-preview.png)
 ## Overview
 This is a weather application built with React / TailwindCSS
+
 Using API - https://www.weatherapi.com/
+
 Design from - https://bigsondev.com/
 
 ## Features
