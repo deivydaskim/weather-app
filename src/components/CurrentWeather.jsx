@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { formatDate } from '../utils/formatDate';
+import { formatDate } from '../utils/formatter';
 import { TempModeContext } from '../context/TempModeContext';
 import { CurrentWeatherSkeleton } from './Skeletons';
 
@@ -46,7 +46,7 @@ const CurrentWeather = ({ weather, loading, error }) => {
       <div className="flex flex-col justify-between py-2">
         <p className="body text-gray-900/60">{formatedDate}</p>
         <h1 className="headline-l text-gray-900/90">{weather.location.name}</h1>
-        <h2 className="headline-xl text-gray-900/90">
+        <h2 className="sm:headline-xl headline-l text-gray-900/90">
           {temperature}° - {dewTemperatorue}°
         </h2>
       </div>

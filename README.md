@@ -1,7 +1,9 @@
 # Weather App
 
 ## Overview
-This is a weather application built with React / Tailwind
+This is a weather application built with React / TailwindCSS
+Using API - https://www.weatherapi.com/
+Design from - https://bigsondev.com/
 
 ## Features
 - Display current weather based on user location
@@ -12,7 +14,6 @@ This is a weather application built with React / Tailwind
 - Detailed weather information including temperature, humidity, and wind speed and more
 
 ## Installation
-Follow these steps to get the project up and running:
 
 ### Clone the repository
 ```git clone https://github.com/deivydaskim/weather-app.git```
@@ -20,6 +21,8 @@ Follow these steps to get the project up and running:
 ```cd weather-app```
 ### Install dependencies
 ```npm install```
+### Create .env file
+```Create .env file based on .env.example with your API key from https://www.weatherapi.com/```
 ### Start the development server
 ```npm run dev```
 ### Open in browser

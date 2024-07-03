@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ErrorPopover from './ErrorPopover';
 
 const GeolocationBtn = ({ changeLocation }) => {
   const [error, setError] = useState(null);
@@ -13,31 +14,28 @@ const GeolocationBtn = ({ changeLocation }) => {
         },
         () => {
           setError('Failed to get your location. Check device settings.');
-          setTimeout(() => setError(null), 2000);
         }
       );
     } else {
       setError('Geolocation not supported by this browser.');
-      setTimeout(() => setError(null), 2000);
     }
+  };
+
+  const clearErrorHandler = () => {
+    setError(null);
   };
 
   return (
     <>
+      {error && (
+        <ErrorPopover time={2000} clearError={clearErrorHandler}>{error}</ErrorPopover>
+      )}
       <button
         className={'absolute right-2 top-1/2 -translate-y-1/2'}
         onClick={handleGetWeather}
       >
-        <img
-          className="w-6 h-6"
-          src="/icons/location-icon.svg"
-        ></img>
+        <img className="w-6 h-6" src="/icons/location-icon.svg"></img>
       </button>
-      {error && (
-        <div className="body-1 absolute top-11 text-gray-900 bg-red-100 rounded-lg px-2 py-1 w-full z-20">
-          {error}
-        </div>
-      )}
     </>
   );
 };

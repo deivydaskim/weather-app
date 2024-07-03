@@ -9,7 +9,7 @@ import WeatherDetails from './components/WeatherDetails';
 import getWeatherData from './api/WeatherAPI.js';
 
 const App = () => {
-  const [location, setLocation] = useLocalStorage('location', 'Palanga');
+  const [location, setLocation] = useLocalStorage('location', 'London');
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

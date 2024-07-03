@@ -27,37 +27,37 @@
   }
 
   .no-scrollbar {
-    -ms-overflow-style: none; 
-    scrollbar-width: none; 
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-}
 
-.headline-xl {
-  @apply font-['NunitoBold'] text-[63px] tracking-[0.25px]
-}
+  .headline-xl {
+    @apply font-['NunitoBold'] text-[63px] tracking-[0.25px];
+  }
 
-.headline-l {
-  @apply font-['NunitoSemiBold'] text-[35px] tracking-[0.25px]
-}
+  .headline-l {
+    @apply font-['NunitoSemiBold'] text-[35px] tracking-[0.25px];
+  }
 
-.headline-m {
-  @apply font-['NunitoMedium'] text-[26px] tracking-[0.25px]
-}
+  .headline-m {
+    @apply font-['NunitoMedium'] text-[26px] tracking-[0.25px];
+  }
 
-.headline-s {
-  @apply font-['NunitoSemiBold'] text-[21px] tracking-[0.15px]
-}
+  .headline-s {
+    @apply font-['NunitoSemiBold'] text-[21px] tracking-[0.15px];
+  }
 
-.body {
-  @apply font-['NunitoRegular'] text-[16px] tracking-[0.15px]
-}
+  .body {
+    @apply font-['NunitoRegular'] text-[16px] tracking-[0.15px];
+  }
 
-.body-2 {
-  @apply font-['NunitoSemiBold'] text-[16px] tracking-[0.15px]
-}
+  .body-2 {
+    @apply font-['NunitoSemiBold'] text-[16px] tracking-[0.15px];
+  }
 
-.body-3 {
-  @apply font-['NunitoBold'] text-[16px] tracking-[0.25px]
+  .body-3 {
+    @apply font-['NunitoBold'] text-[16px] tracking-[0.25px];
+  }
 }
 
 #root {
